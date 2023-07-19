@@ -25,12 +25,18 @@ const Users = () => {
     );
   }
 
+  const total = users.length;
+
   return (
     <div>
       <h3>Users</h3>
+      <h2>
+        Total:
+        {total}
+      </h2>
       <ul>
-        {users.map((user) => (
-          <li key={user.login.uuid}>{`${user.name.first} ${user.name.last}`}</li>
+        {users.map((userId) => (
+          <li key={userId}>{userId}</li>
         ))}
       </ul>
     </div>

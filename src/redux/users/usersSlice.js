@@ -2,9 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   try {
-    const response = await fetch('https://randomuser.me/api/?results=10');
+    const response = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=Auguste%20Renoir');
     const data = await response.json();
-    return data.results;
+    return data.objectIDs; // Assuming 'objectIDs' is the property containing the user data
   } catch (error) {
     throw new Error('Error fetching users');
   }
@@ -15,14 +15,14 @@ const usersSlice = createSlice({
   initialState: {
     users: [],
     isLoading: false,
-    error: undefined,
+    error: null, // Use null instead of undefined for error field
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.pending, (state) => {
         state.isLoading = true;
-        state.error = undefined;
+        state.error = null; // Set error to null when the fetch is initiated
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.isLoading = false;

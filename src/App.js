@@ -1,37 +1,38 @@
 import React from 'react';
 import {
-  createBrowserRouter, createRoutesFromElements, RouterProvider, Route, Link, Outlet,
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
 } from 'react-router-dom';
 import Users from './components/Users';
+import Data from './components/Data';
 import './App.css';
 
-function App() {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<Root />}>
-        <Route path="/" element={<Users />} />
-      </Route>,
-    ),
-  );
-  return (
-    <div className="body">
-      <RouterProvider router={router} />
-    </div>
-  );
-}
-
-const Root = () => (
-  <>
-    <nav className="navbar">
-      <h1 className="navbar-title">Try to connect React & Redux app to API</h1>
-      <ul className="navbar-list">
-        <li><Link to="/users" className="navbar-item">Users</Link></li>
-      </ul>
-    </nav>
-    <div>
-      <Outlet />
-    </div>
-  </>
+const App = () => (
+  <div className="body">
+    <Router>
+      <nav className="navbar">
+        <h1 className="navbar-title">Try to connect React & Redux app to API</h1>
+        <ul className="navbar-list">
+          <li>
+            <Link to="/users" className="navbar-item">
+              Users
+            </Link>
+          </li>
+          <li>
+            <Link to="/data" className="navbar-item">
+              Data
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/users" element={<Users />} />
+        <Route path="/data" element={<Data />} />
+      </Routes>
+    </Router>
+  </div>
 );
 
 export default App;
