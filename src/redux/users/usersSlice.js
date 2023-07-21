@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   try {
-    const response = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=Auguste%20Renoir');
+    const response = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=Vincent%20VanGogh');
     const data = await response.json();
     return data.objectIDs; // Assuming 'objectIDs' is the property containing the user data
   } catch (error) {

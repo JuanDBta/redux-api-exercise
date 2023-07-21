@@ -5,7 +5,7 @@ import { fetchUserData } from '../redux/users/dataSlice';
 
 const selectUsers = createSelector(
   (state) => state.users.users,
-  (users) => users.slice(0, 10),
+  (users) => users.slice(0, 20),
 );
 
 const Data = () => {
